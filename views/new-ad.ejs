@@ -1,0 +1,36 @@
+
+<%- include('includes/head.ejs') %>
+<%- include('includes/header.ejs') %>
+
+<form action="/new-ad" method="POST">
+    <div class="container border border-warning rounded bg-warning-subtle col-lg-7 mt-5 p-4">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Enter a title" name="title" <%if (error) { %> value="<%= body.title %>" <%}%> required>
+        </div>
+        <div class="form-group mt-2">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" placeholder="Add a description" name="description"><% if (error) { %><%= body.description %><% } %></textarea>
+        </div>
+        <div class="form-group mt-2">
+            <label for="price">Price</label>
+            <input type="number" step="0.01" class="form-control" id="price" placeholder="Enter a price" name="price" <%if (error) { %> value="<%= body.price %>" <%}%> required>
+        </div>
+        <div class="form-group mt-2">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" id="phone" placeholder="Enter your phone number" name="phone" <%if (error) { %> value="<%= body.phone %>" <%}%> required>
+        </div>
+        <div class="form-group mt-2">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email" <%if (error) { %> value="<%= body.email %>" <%}%> required>
+        </div>
+        <button type="submit" class="btn btn-warning mt-3">Post New Ad</button></div>
+</form>
+
+</div>
+
+<% if (error) { %>
+    <%- include('includes/modal.ejs')%>
+<% } %>
+
+<%- include('includes/end.ejs') %>

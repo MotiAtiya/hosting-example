@@ -1,0 +1,44 @@
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+    <div class="row p-5 <%= path === '/error' ? 'bg-danger-subtle' : 'bg-warning-subtle' %> text-center">
+        <h1>Yad 2 ads</h1>
+        <h4><%= pageTitle %></h4>
+    </div>
+
+    <div class="row">
+        <nav class="navbar navbar-expand bg-body-tertiary" data-bs-theme="dark">
+            <div class="container-fluid">
+                <ul class="navbar-nav ms-5 me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link me-3 <%= path === '' ? 'active' : '' %>" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-3 <%= path === '/new-ad' ? 'active' : '' %>" href="/new-ad">New ad</a>
+                    </li>
+                <% if (loggedIn) { %>
+                        <li class="nav-item">
+                            <a class="nav-link me-3 <%= path === '/admin' ? 'active' : '' %>" href="/admin">Edit Ads</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link me-3" href="/admin/logout">Log out</a>
+                        </li>
+                <% } else { %>
+                        <li class="nav-item">
+                            <a class="nav-link me-3 <%= path === '/login' ? 'active' : '' %>" href="/login">Log in</a>
+                        </li>
+                    <% } %>
+                </ul>
+                <% if (path === '' || path === '/admin') { %>
+                <form class="d-flex me-5" role="search" <%= path === '' ? 'action=/search method=GET' : '' %> >
+                    <input class="form-control me-2" type="search" placeholder="Search by title" aria-label="Search" name="titleSearch" <% if (path === '') { %> value="<%= search %>" <% } %>>
+                    <button class="btn btn-outline-light" type="submit" id="search">Search</button>
+                </form>
+                <% } %>
+            </div>
+        </nav>
+    </div>
+
